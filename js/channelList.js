@@ -28,6 +28,7 @@ function createChannels(g) {
     // Sort the channels and add them to the screen
     g.channels.cache
         .array()
+        .filter((c) => c.type == 'category')
         .sort((c1, c2) => c1.position - c2.position)
         .forEach((c) => {
             if (c.type == 'category') {
@@ -94,16 +95,6 @@ function createChannels(g) {
 
             // check if user can access the channel
             let blocked = false;
-            if (
-                !c.permissionsFor(g.me).has('VIEW_CHANNEL') ||
-                (bot.hideUnallowed &&
-                    !c
-                        .permissionsFor(g.members.cache.get(bot.owner.id))
-                        .has('VIEW_CHANNEL'))
-            ) {
-                blocked = true;
-                div.classList.add('blocked');
-            }
 
             // Create the svg icon
             let svg = document.createElement('img');
