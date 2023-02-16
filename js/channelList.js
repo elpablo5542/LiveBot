@@ -28,7 +28,6 @@ function createChannels(g) {
     // Sort the channels and add them to the screen
     g.channels.cache
         .array()
-        .filter((c) => c.type == 'category')
         .sort((c1, c2) => c1.position - c2.position)
         .forEach((c) => {
             if (c.type == 'category') {
